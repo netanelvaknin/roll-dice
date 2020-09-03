@@ -38,7 +38,10 @@ const Dice = ({diceRandomNumber}) => {
     }, [diceRandomNumber]);
 
     return (
-        <DiceStyle icon={DiceIcon} className={animateClassName} onAnimationEnd={() => setClassName('')}/>
+        <DiceStyle 
+            icon={DiceIcon} 
+            className={animateClassName} 
+            onAnimationEnd={() => setClassName('')}/>
     );
 };
 
