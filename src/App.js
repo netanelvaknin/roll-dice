@@ -26,13 +26,17 @@ function App() {
   const numbers = ['One', 'Two', 'Three', 'Four', 'Five', 'Six'];
 
   const getRandomDice = () => {
-    const randNumber1 = numbers[Math.floor(Math.random() * numbers.length)];
-    const randNumber2 = numbers[Math.floor(Math.random() * numbers.length)];
+    // Enter how much you want. Every one random number = one dice
+    const randomNumbers = [
+      numbers[Math.floor(Math.random() * numbers.length)],
+      numbers[Math.floor(Math.random() * numbers.length)],
+    ];
+
     setIsDisabled(true);
     setButtonText('Rolling...');
 
     setTimeout(() => {
-      setDiceRandomNumber([randNumber1, randNumber2]);
+      setDiceRandomNumber([...randomNumbers]);
       setIsDisabled(false);
       setButtonText("Let's roll");
     }, 500);
