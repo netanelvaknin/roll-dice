@@ -3,15 +3,25 @@ import './App.css';
 import Dice from './components/dice/Dice';
 import RollButton from './components/roll-button/RollButton';
 import styled from 'styled-components/macro';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {faHandPointDown} from "@fortawesome/free-solid-svg-icons";
 
 const DicesWrapper = styled.div`
   text-align: center;
 `;
 
+const PointDownIcon = styled(FontAwesomeIcon)`
+  font-size: 8rem;
+  margin: 3rem;
+
+  path {
+    fill: #ffcc33;
+  }
+`;
+
 function App() {
   const [buttonText, setButtonText] = useState("Let's roll");
   const [diceRandomNumber, setDiceRandomNumber] = useState(null);
-  const [diceRandomNumber2, setDiceRandomNumber2] = useState(null);
   const [isButtonDisabled, setIsDisabled] = useState(false);
   const numbers = ['One', 'Two', 'Three', 'Four', 'Five', 'Six'];
 
@@ -22,8 +32,7 @@ function App() {
     setButtonText('Rolling...');
 
     setTimeout(() => {
-      setDiceRandomNumber(randNumber1);
-      setDiceRandomNumber2(randNumber2);
+      setDiceRandomNumber([randNumber1, randNumber2]);
       setIsDisabled(false);
       setButtonText("Let's roll");
     }, 500);
@@ -32,8 +41,8 @@ function App() {
   return (
     <div className="App">
       <DicesWrapper>
-        <Dice diceRandomNumber={diceRandomNumber} />
-        <Dice diceRandomNumber={diceRandomNumber2} />
+        {!diceRandomNumber && <PointDownIcon icon={faHandPointDown} />}
+        <Dice diceRandomNumbers={diceRandomNumber} />
       </DicesWrapper>
       
       <RollButton 

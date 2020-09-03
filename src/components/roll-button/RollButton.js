@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components/macro';
 
 const RollButtonStyle = styled.button`
-    background: black;
+    background: ${({disabled}) => disabled ? 'gray' : '#000'};
     width: 25rem;
     height: 5rem;
     color: white;
@@ -10,7 +10,7 @@ const RollButtonStyle = styled.button`
     outline: none;
     border: 0;
     border-radius: 5px;
-    cursor: pointer;
+    cursor: ${({disabled}) => disabled ? 'normal' : 'pointer'};
     display: block;
     margin: 0 auto;
 `;

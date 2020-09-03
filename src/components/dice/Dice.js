@@ -19,7 +19,7 @@ const DiceStyle = styled(FontAwesomeIcon)`
     }
 `;
 
-const Dice = ({diceRandomNumber}) => {
+const Dice = ({diceRandomNumbers = ["One", "One"]}) => {
     const [animateClassName, setClassName] = useState("animate__animated animate__shakeX");
 
     const dices = {
@@ -31,17 +31,20 @@ const Dice = ({diceRandomNumber}) => {
         Six: faDiceSix
     }
 
-    const DiceIcon = dices[diceRandomNumber] || faDiceOne;
+    const DiceIcons = diceRandomNumbers && diceRandomNumbers.map((diceRandNumber) => {
+        return dices[diceRandNumber] || faDiceOne;
+    });
 
     useEffect(() => {
         setClassName('animate__animated animate__shakeX');
-    }, [diceRandomNumber]);
+    }, [diceRandomNumbers]);
 
     return (
-        <DiceStyle 
-            icon={DiceIcon} 
-            className={animateClassName} 
-            onAnimationEnd={() => setClassName('')}/>
+        <>
+            {DiceIcons && DiceIcons.map((dice, index) => {
+                return <DiceStyle key={index} icon={dice} className={animateClassName} onAnimationEnd={() => setClassName('')}/>
+            })}
+        </>
     );
 };
 
