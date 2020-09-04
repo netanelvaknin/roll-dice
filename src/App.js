@@ -6,6 +6,15 @@ import styled from 'styled-components/macro';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faHandPointDown} from "@fortawesome/free-solid-svg-icons";
 
+const AppContainer = styled.div`
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
 const DicesWrapper = styled.div`
   text-align: center;
 `;
@@ -43,7 +52,7 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <AppContainer>
       <DicesWrapper>
         {!diceRandomNumber && <PointDownIcon icon={faHandPointDown} />}
         <Dice diceRandomNumbers={diceRandomNumber} />
@@ -53,7 +62,7 @@ function App() {
         buttonText={buttonText} 
         rollHandler={getRandomDice} 
         disabled={isButtonDisabled} />
-    </div>
+    </AppContainer>
   );
 }
 
